@@ -1,0 +1,16 @@
+{
+    "name": "monorepo",
+    "version": "0.1.0",
+    "description": "Monorepo",
+    "workspaces": [
+      "examples/*"
+    ],
+    "scripts": {
+      "dev:example": "npm run dev -w examples/basic -- --port 3050",
+      "build:example": "npm run build -w examples/basic",
+      "start:example": "npm run start -w examples/basic -- --port 3050"
+    },
+    "author": "Octana",
+    "license": "ISC"
+  }
+  
