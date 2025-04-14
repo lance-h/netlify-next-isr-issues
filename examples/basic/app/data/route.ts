@@ -1,4 +1,4 @@
-import { revalidatePath } from 'next/cache';
+import { revalidatePath, revalidateTag } from 'next/cache';
 import { NextRequest, NextResponse } from "next/server";
 
 export async function GET(request: NextRequest) {
@@ -6,7 +6,8 @@ export async function GET(request: NextRequest) {
     const action = searchParams.get('action');
     if (action === 'nuke') {
         console.log('Nuking');
-        revalidatePath('/[[...segment]]', 'page');
+        // revalidatePath('/[[...segment]]', 'page');
+        revalidateTag('all');
         return NextResponse.json({ message: 'Nuked', timestamp: new Date() });
     } else if (action === 'revalidatepath') {
         const path = searchParams.get('path') || ''
