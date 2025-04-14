@@ -20,7 +20,7 @@ export default async function Page({ params }: Props) {
     const url = `/${(params.segment || []).join('/')}`;
     const timestamp = new Date();
     const quote = await getQuote();
-    console.log('Building Page', { url, date: timestamp });
+    console.log('Building Page.', { url, date: timestamp });
 
     return <><div id="test">{timestamp.toISOString()}</div><div id="quote">{quote}</div></>;
 }
