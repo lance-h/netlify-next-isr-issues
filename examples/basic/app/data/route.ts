@@ -6,7 +6,6 @@ export async function GET(request: NextRequest) {
     const action = searchParams.get('action');
     if (action === 'nuke') {
         console.log('Nuking');
-        // revalidatePath('/[[...segment]]', 'page');
         revalidateTag('all');
         return NextResponse.json({ message: 'Nuked', timestamp: new Date() });
     } else if (action === 'revalidatepath') {
