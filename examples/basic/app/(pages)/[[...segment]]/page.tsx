@@ -1,3 +1,5 @@
+import { draftMode } from "next/headers";
+
 type Params = {
     segment: Array<string>;
 }
@@ -23,11 +25,13 @@ export default async function Page({ params }: Props) {
     const url = `/${(params.segment || []).join('/')}`;
     const timestamp = new Date();
     const quote = await getQuote();
+    const isDraftMode = draftMode().isEnabled;
     console.log('Rendering Page', { url, date: timestamp });
 
     return <>
         <div id="test">{timestamp.toISOString()}</div>
         <div id="quote">{quote}</div>
+        <div id="preview">Draft Mode: {isDraftMode ? 'Yes' : 'No'}</div>
     </>;
 }
 
