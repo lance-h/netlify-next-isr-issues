@@ -1,6 +1,6 @@
 [build]
   command = "npm run build:example"
-  publish = "examples/basic/.next"
+  publish = "web/.next"
   ignore = "exit 1" # Don't ignore any builds
 
 [[plugins]]
