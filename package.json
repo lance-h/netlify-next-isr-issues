@@ -3,12 +3,12 @@
     "version": "0.1.0",
     "description": "Monorepo",
     "workspaces": [
-      "examples/*"
+      "web"
     ],
     "scripts": {
-      "dev:example": "npm run dev -w examples/basic -- --port 3050",
-      "build:example": "npm run build -w examples/basic",
-      "start:example": "npm run start -w examples/basic -- --port 3050"
+      "dev:example": "npm run dev -w web -- --port 3050",
+      "build:example": "npm run build -w web",
+      "start:example": "npm run start -w web -- --port 3050"
     },
     "author": "Octana",
     "license": "ISC"
