@@ -6,35 +6,16 @@ type Props = {
     params: Params;
 }
 
-// const getQuote = async (): Promise<string> => {
-//     const response = await fetch('https://nicolas-cage-quotes.onrender.com/quotes?t=1', {
-//         next: {
-//             tags: ['page', 'all']
-//         }
-//     });
-
-//     return (await response.json())[0];
-// }
-
 export default async function Page({ params }: Props) {
     const url = `/${(params.segment || []).join('/')}`;
     const timestamp = new Date();
-    // const quote = await getQuote();
-    console.log('Building Page.', { url, date: timestamp });
+    console.log('Rendering Page', { url, date: timestamp });
 
-    return <>
-        <div id="test">{timestamp.toISOString()}</div>
-        {/* <div id="quote">{quote}</div> */}
-    </>;
+    return <div id="test">{timestamp.toISOString()}</div>;
 }
 
 export async function generateStaticParams() {
     console.log('generateStaticParams');
 
-    // const pages = ['one', 'two', 'three'];
-    const pages: Array<string> = [];
-
-    return pages.map((segment) => ({
-        segment: [segment]
-    }));
+    return [];
 }
