@@ -10,8 +10,9 @@ export async function GET(request: NextRequest) {
         return NextResponse.json({ message: 'Nuked', timestamp: new Date() });
     } else if (action === 'revalidatepath') {
         const path = searchParams.get('path') || ''
+        const type = searchParams.get('type') ?? undefined;
         console.log('Revalidating', path);
-        revalidatePath(path);
+        revalidatePath(path, type as any);
         return NextResponse.json({ message: `Revalidated ${path}`, timestamp: new Date() });
     } else if (action === 'tag') {
         const tag = searchParams.get('tag') ?? '';
