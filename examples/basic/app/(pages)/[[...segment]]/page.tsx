@@ -7,9 +7,9 @@ type Props = {
 }
 
 const getQuote = async (): Promise<string> => {
-    const response = await fetch('https://nicolas-cage-quotes.onrender.com/quotes', {
+    const response = await fetch('https://nicolas-cage-quotes.onrender.com/quotes?t=1', {
         next: {
-            tags: ['all']
+            tags: ['page', 'all']
         }
     });
 
@@ -28,7 +28,8 @@ export default async function Page({ params }: Props) {
 export async function generateStaticParams() {
     console.log('generateStaticParams');
 
-    const pages = ['one', 'two', 'three'];
+    // const pages = ['one', 'two', 'three'];
+    const pages: Array<string> = [];
 
     return pages.map((segment) => ({
         segment: [segment]

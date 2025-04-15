@@ -14,6 +14,11 @@ export async function GET(request: NextRequest) {
         console.log('Revalidating', path);
         revalidatePath(path);
         return NextResponse.json({ message: `Revalidated ${path}`, timestamp: new Date() });
+    } else if (action === 'tag') {
+        const tag = searchParams.get('tag') ?? '';
+        console.log('revalidateTag', tag);
+        revalidateTag(tag);
+        return NextResponse.json({ message: `revalidateTag(${tag})`, timestamp: new Date() });
     }
 
     return new Response(undefined, { status: 400 });
