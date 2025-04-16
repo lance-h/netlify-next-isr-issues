@@ -1,3 +1,4 @@
+import { revalidatePath } from "next/cache";
 import { draftMode } from "next/headers";
 
 type Params = {
@@ -21,10 +22,16 @@ const getQuote = async (): Promise<string> => {
     return (await response.json())[0];
 };
 
-export const revalidate = 30;
+// export const revalidate = 30;
 
 export default async function Page({ params }: Props) {
     const url = `/${(params.segment || []).join('/')}`;
+    // Server Action
+    async function refresh() {
+        'use server'
+    
+        revalidatePath('/', 'layout');
+    }
     const timestamp = new Date();
     const quote = await getQuote();
     const isDraftMode = draftMode().isEnabled;
@@ -34,6 +41,9 @@ export default async function Page({ params }: Props) {
         <div id="test">{timestamp.toISOString()}</div>
         <div id="quote">{quote}</div>
         <div id="preview">Draft Mode: {isDraftMode ? 'Yes' : 'No'}</div>
+        <form action={refresh}>
+            <button type="submit">Submit</button>
+        </form>
     </>;
 }
 
