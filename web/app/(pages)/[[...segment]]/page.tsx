@@ -21,6 +21,8 @@ const getQuote = async (): Promise<string> => {
     return (await response.json())[0];
 };
 
+export const revalidate = 30;
+
 export default async function Page({ params }: Props) {
     const url = `/${(params.segment || []).join('/')}`;
     const timestamp = new Date();
